@@ -1,0 +1,107 @@
+:host {
+    >.innercontainer {
+        width: 100%;
+        margin: 0 auto;
+        display: flex;
+        justify-content: space-between;
+        background: none;
+    }
+     ::ng-deep {
+        .mat-tab-group-vert {
+            flex-direction: row;
+        }
+        .mat-tab-group-vert .mat-tab-header {
+            border-bottom: none;
+        }
+        .mat-tab-group-vert .mat-tab-header-pagination {
+            display: none !important;
+        }
+        @media (min-width: 600px) {
+            .mat-tab-label {
+                height: 48px;
+                padding: 0 24px;
+                cursor: pointer;
+                box-sizing: border-box;
+                opacity: .6;
+                min-width: 160px;
+                text-align: center;
+                display: inline-flex;
+                justify-content: center;
+                align-items: center;
+                white-space: nowrap;
+                margin-bottom: 32px;
+                position: relative;
+                z-index: 1000 !important;
+                opacity: 1;
+            }
+            .mat-tab-label-active {
+                background-color: #0aa89e !important;
+                color: #ffffff !important;
+                border-radius: 5rem !important;
+            }
+            .mat-tab-label {
+                //background-color: #a6cff8;
+                background-color: #c7fffb;
+                color: #0aa89e;
+                border-radius: 5rem !important;
+            }
+            .mat-ink-bar {
+                height: 100%;
+                left: 49% !important;
+                width: 2px !important;
+                z-index: -1;
+                top: 10px;
+                bottom: 10px;
+            }
+        }
+        .last-label {
+            margin-bottom: -64px !important;
+        }
+        .mat-tab-group-vert .mat-tab-labels {
+            flex-direction: column;
+            z-index: 1000 !important;
+        }
+        .mat-tab-group-vert .mat-ink-bar {
+            height: 100%;
+            //left: 98% !important;
+        }
+        .mat-tab-group-vert .mat-tab-body-wrapper {
+            flex: 1 1 auto;
+        }
+    }
+}
+
+.innercontainer {
+    position: relative;
+    width: 100%;
+    flex: 1 0 auto;
+    margin: 0 auto;
+    text-align: left;
+}
+
+#content {
+    box-sizing: content-box;
+    //margin: 0 auto;
+    padding: 15px;
+    padding-left: 0px;
+    width: 100%;
+}
+
+#content {
+    width: 100%;
+    padding: 24px;
+    padding-left: 0px;
+    box-sizing: border-box;
+}
+
+#content,
+#main-content {
+    &::before,
+    &::after {
+        content: "";
+        display: table;
+    }
+    &::after {
+        clear: both;
+    }
+}

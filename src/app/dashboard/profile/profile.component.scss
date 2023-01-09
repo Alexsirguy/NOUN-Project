@@ -1,0 +1,118 @@
+.main-h {
+    min-height: 250px;
+}
+
+.space {
+    min-height: 32px;
+}
+
+.mat-tab-label-active {
+    border-bottom: solid 4px#f44336 !important;
+}
+
+mat-form-field {
+    width: 100%;
+}
+
+.tab-button {
+    z-index: 1000 !important;
+    width: 180px;
+}
+
+.btn-vprimary2 {
+    background-color: #1976d2 !important;
+    border: #1976d2;
+    color: #ffffff !important;
+}
+
+.white-bg {
+    background-color: #ffffff !important;
+    margin-left: 16px;
+    padding: 24px;
+}
+
+#ck-button label {
+    float: left;
+}
+
+#ck-button label {
+    text-align: center;
+    padding: 3px 0px !important;
+    display: block;
+    border-radius: 15px;
+    background-color: #efefee;
+    margin-left: 12px;
+}
+
+#ck-button label span {
+    text-align: center;
+    padding: 0px 12px !important;
+}
+
+#ck-button label input {
+    position: absolute;
+    top: -20px;
+}
+
+#ck-button input:checked+span {
+    background-color: #a6cff8;
+    color: #1976d2;
+    text-align: center;
+    padding: 6px 12px !important;
+    margin-top: -2px;
+    margin-bottom: -2px;
+    display: block;
+    border-radius: 15px;
+}
+
+#ck-button input:checked+span::after {
+    content: attr(data-done);
+}
+
+.input-gray-bg-right {
+    background: #efefee;
+    border-top-right-radius: 5rem;
+    border-bottom-right-radius: 5rem;
+    padding: 6px;
+}
+
+.input-gray-bg-left {
+    background: #efefee;
+    border-top-left-radius: 5rem;
+    border-bottom-left-radius: 5rem;
+    padding: 6px;
+}
+
+.go-live {
+    padding: 32px;
+    background: url("/assets/images/alertbg.jpg");
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
+
+@media (max-width: 600px) {
+    .mobile-screen {
+        display: inherit;
+    }
+    .desktop-screen {
+        display: none;
+    }
+    .white-bg {
+        background-color: #ffffff !important;
+        margin-left: 0px;
+        padding: 12px;
+    }
+}
+
+@media (min-width: 600px) {
+    .mobile-screen {
+        display: none;
+    }
+    .desktop-screen {
+        display: inherit;
+    }
+}
+
+.mat-column-view {
+    text-align: right;
+}

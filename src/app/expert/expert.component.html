@@ -1,0 +1,115 @@
+<app-navbar></app-navbar>
+<section class="gray-bg" style="padding-top: 150px; padding-bottom: 32px; min-height: 90vh;">
+    <div class="container-fluid" style="max-width: 1400px;">
+        <div class="row" *ngIf="success">
+            <div class="col-md-6 col-lg-4" style="margin-top: 16px;">
+                <div class="row  panel">
+                    <div class="col-3 text-center">
+                        <img defaultImage="/assets/images/default.png" [lazyLoad]="FILEURL + data.avatar" style="width: 80px; height: 80px; border-radius: 50%;">
+                    </div>
+                    <div class="col-9">
+
+                        <h2>{{data.fullname |titlecase}}</h2>
+
+                        <p class="specialty">{{data.expert.specialty | titlecase}}</p>
+                        <p class="" style="margin-top: -16px;">{{data.expert.qualification | titlecase}}</p>
+                        <p style="margin-top: -16px;"><span *ngIf="data.expert.currency=='NGN'">&#8358;</span><span *ngIf="data.expert.currency=='USD'">$</span>{{data.expert.rate | number:'1.0-0'}}/hr</p>
+                    </div>
+                </div>
+                <div style="min-height: 16px;"></div>
+                <div class="row panel" style="min-height: 180px;">
+                    <div class="col-12">
+                        <h3><b>ABOUT</b></h3>
+                        <hr>
+                        <p class="bio">{{data.expert.bio}}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-4" style="margin-top: 16px;">
+                <div class="row panel">
+                    <div class="col-12">
+                        <h3 class="color-red"><b>SELECT A BOOKING DATE</b></h3>
+                        <hr>
+                        <mat-calendar [selected]="selectedDate" [minDate]="minDate" (selectedChange)="schedule($event)"></mat-calendar>
+                    </div>
+
+
+                </div>
+
+            </div>
+            <div class="offset-md-6 col-md-6 col-lg-4 offset-lg-0" style="margin-top: 16px;">
+                <div class="row panel" *ngIf="bookingSuccess">
+                    <div class="col-12">
+                        <h3 class="color-red"><b>SELECT BOOKING TIME</b></h3>
+                        <hr>
+                        <div class="row">
+                            <div class="col-6 col-md-4 text-center" style="margin-bottom:12px;" *ngFor="let d of morning">
+                                <button *ngIf="inactive(d)" [disabled]="inactive(d)" [matTooltip]="tooltip(d)" class="btn timeslot">
+                                BOOKED
+                             </button>
+
+                                <button *ngIf="!inactive(d)" (click)="onTimeSelect(d)" [disabled]="inactive(d) || passTime(d)" [matTooltip]="tooltip(d)" class="btn timeslot" [ngClass]="{
+                                    'active':isSelected(d)
+                                  }">
+                                {{d}} 
+                             </button>
+                            </div>
+                            <div class="col-6 col-md-4 text-center" style="margin-bottom:12px;" *ngFor="let d of afternoon">
+                                <button *ngIf="inactive(d)" [disabled]="inactive(d)" [matTooltip]="tooltip(d)" class="btn timeslot">
+                                    BOOKED
+                                 </button>
+                                <button *ngIf="!inactive(d)" (click)="onTimeSelect(d)" [disabled]="inactive(d) || passTime(d)" [matTooltip]="tooltip(d)" class="btn timeslot" [ngClass]="{
+                                    'active':isSelected(d)
+                                  }">
+                                {{d}} 
+                             </button>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-12" *ngIf="selectedTime.length > 0" style="margin-top: 16px;">
+                                <form [formGroup]="commentForm">
+                                    <mat-form-field appearance="outline">
+                                        <mat-label>Note for tutor</mat-label>
+                                        <textarea matInput formControlName="comment"></textarea>
+                                    </mat-form-field>
+                                </form>
+                            </div>
+                            <div class="col-md-12">
+
+                                <button [disabled]="selectedTime.length == 0" [autoClose]="true" angular-rave [raveOptions]="paymentOptions" (callback)="paymentSuccess($event)" (onclose)="onclosePayment($event)" (init)="paymentInit($event)" class="pull-right" mat-raised-button color="primary">
+                                 CONTINUE <i class="fa fa-spin fa-spinner" *ngIf="loading"></i>
+                             </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row" *ngIf="bookingLoader">
+                    <div class="col-12">
+                        <app2-loading></app2-loading>
+                    </div>
+                </div>
+
+                <div class="row" *ngIf="bookingFailure">
+                    <div class="col-12">
+                        <app2-nework-failure message="Could not load booking informaton. Please check your internet and try again" (retry)="retrySchedule()"></app2-nework-failure>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="row" *ngIf="loader">
+            <div class="col-12">
+                <app2-loading></app2-loading>
+            </div>
+        </div>
+
+        <div class="row" *ngIf="failure">
+            <div class="col-12">
+                <app2-nework-failure (retry)="ngOnInit()"></app2-nework-failure>
+            </div>
+        </div>
+    </div>
+</section>
+<app-footer></app-footer>

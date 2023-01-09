@@ -1,0 +1,42 @@
+.border-side {
+    border: solid 2px#ff5722;
+    color: #ff5722;
+}
+
+.border-side:hover {
+    border: solid 2px#333333;
+    background-color: #333333;
+    color: #ffffff;
+}
+
+.primary-color:hover {
+    color: #ffffff;
+}
+
+.color-white {
+    color: #ffffff;
+}
+
+.fill {
+    background-color: #ff5722;
+    border: solid 2px#ff5722;
+}
+
+.fill:hover {
+    background-color: #333333;
+    border: solid 2px#333333;
+}
+
+.link-nav {
+    color: #333333;
+}
+
+.link-nav:hover {
+    color: #ff5722;
+}
+
+@media(max-width: 991px) {
+    .fill {
+        margin-top: 16px;
+    }
+}

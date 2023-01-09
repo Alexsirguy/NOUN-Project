@@ -1,0 +1,45 @@
+<app-navbar></app-navbar>
+<section class="gray-bg" style="padding-top: 150px; padding-bottom: 32px; min-height: 85vh;">
+    <div class="container">
+        <div class="row">
+            <div class="offset-md-3 col-md-6">
+                <div style="background-color: #ffffff; padding:32px; border-radius: 15px;">
+                    <h2 class="title">Create student account</h2>
+                    <form [formGroup]="regForm" (ngSubmit)="register()">
+                        <div class="form-group">
+                            <input type="text" required formControlName="name" class="form-control" required placeholder="Enter your full name">
+                        </div>
+                        <div class="form-group">
+                            <input type="email" required formControlName="email" class="form-control" placeholder="Enter your email">
+                        </div>
+
+                        <div class="form-group">
+                            <input type="text" formControlName="phone" class="form-control" placeholder="Enter your phone number">
+                        </div>
+                        <div class="form-group">
+                            <input type="password" formControlName="password" class="form-control" required placeholder="Enter password">
+                        </div>
+                        <div class="form-group">
+                            <input type="password" formControlName="confirmpassword" class="form-control" required placeholder="Confirm password">
+                        </div>
+                        <div class="form-group">
+                            <button [disabled]="loading" class=" btn-block btn-app">CREATE ACCOUNT <i *ngIf="loading" class="fa fa-spin fa-spinner"></i></button>
+                        </div>
+                        <!-- <div class="form-group text-center" style="margin-top:22px">
+                            <button type="button" style="border-radius: 5rem;" class="btn-app-contract"> <I class="fa fa-google"></I> SIGN UP WITH GOOGLE</button>
+                        </div> -->
+                    </form>
+
+                </div>
+                <div class="text-center" style="margin-top:22px">
+                    <p>I forgot password?</p>
+                    <div class="form-group text-center" style="margin-top:22px">
+                        <button routerLink="/login" type="button" style="border-radius: 5rem;" class="btn-app-secondary"> LOGIN TO AN ACCOUNT</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+<app-footer></app-footer>

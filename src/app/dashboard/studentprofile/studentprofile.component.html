@@ -1,0 +1,66 @@
+<div class="container-fluid">
+
+    <div class="row" *ngIf="success">
+        <div class="col-md-8 offset-md-2 col-sm-12 text-center">
+            <div class="panel-shadow-header card-info" style="width:100%;">
+                <form [formGroup]="loginForm" (ngSubmit)="login(loginForm)">
+
+                    <div class="example-container">
+                        <mat-form-field appearance="outline">
+                            <mat-label>Full Name</mat-label>
+                            <input matInput type="text" required formControlName="fullname" placeholder="Full Name">
+                        </mat-form-field>
+                        <mat-form-field appearance="outline">
+                            <mat-label>Phone</mat-label>
+                            <input matInput type="text" formControlName="phone" placeholder="Phone">
+                        </mat-form-field>
+
+                        <div class="row">
+                            <div class="col-md-6" style="padding-left: 0;">
+                                <mat-form-field appearance="outline">
+                                    <mat-label>Gender</mat-label>
+                                    <mat-select formControlName="gender">
+                                        <mat-option>Select Gender</mat-option>
+                                        <mat-option value="Male">Male</mat-option>
+                                        <mat-option value="Female">Female</mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                            </div>
+                            <div class="col-md-6" style="padding-right: 0;">
+                                <mat-form-field appearance="outline">
+                                    <mat-label>Date of Birth</mat-label>
+                                    <input matInput type="text" [matDatepicker]="myDatepicker" formControlName="dob" placeholder="Date of Birth">
+                                    <mat-datepicker-toggle matSuffix [for]="myDatepicker"></mat-datepicker-toggle>
+                                    <mat-datepicker #myDatepicker></mat-datepicker>
+                                </mat-form-field>
+                            </div>
+                        </div>
+
+
+
+
+                        <div style="margin: 0 auto">
+
+                            <img #cover (click)="input.click()" defaultImage="/assets/images/default.png" lazyLoad="{{avatar}}" style="width:80px; height:80px; border-radius: 50%;" />
+                            <input type="file" class="hidden" #input (change)="onFileChange($event)" />
+                            <p (click)="input.click()" class="grey-text no-margin margin-top-text upload-text">Upload Photo</p>
+
+
+                        </div>
+                        <div class="form-group" style="margin-bottom: 48px; margin-top:32px;">
+
+                            <div class="flex-spacer"></div>
+                            <button type="submit" mat-raised-button color="primary" class="btn btn-lg btn-round" [disabled]="loading">UPDATE PROFILE <i class="fa fa-spin fa-spinner"
+                                                                    *ngIf="loading"></i></button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="row" *ngIf="loader">
+        <div class="col-12">
+            <app-loading></app-loading>
+        </div>
+    </div>
+</div>

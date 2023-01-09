@@ -1,0 +1,621 @@
+<div class="container" *ngIf="success">
+    <div class="row mobile-screen">
+        <div class="col-md-12" style="padding:0px !important">
+            <div class="container">
+                <div>
+                    <div>
+
+                        <mat-tab-group [(selectedIndex)]="activeTab" class="mat-tab-group">
+                            <mat-tab>
+                                <ng-template mat-tab-label>
+                                    Profile
+                                </ng-template>
+                                <div class="white-bg text-center">
+                                    <form [formGroup]="mprofile" (ngSubmit)="updateProfile(mprofile)">
+                                        <h4 class="text-center">BASIC INFORMATION</h4>
+                                        <hr>
+                                        <div class="row">
+
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6 text-center">
+                                                <div style="margin: 0 auto">
+
+                                                    <img #cover (click)="input.click()" defaultImage="/assets/images/default.png" lazyLoad="{{avatar}}" style="width:100px; height:100px; border:solid 1px#efefee; border-radius: 50%;" />
+                                                    <input type="file" class="hidden" #input (change)="onFileChange($event)" />
+                                                    <p (click)="input.click()" class="grey-text no-margin margin-top-text upload-text">Upload Photo</p>
+                                                    <p style="margin-top: -12px;">{{data?.user.email}}</p>
+
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <mat-form-field appearance="outline">
+                                                    <mat-label>Full Name</mat-label>
+                                                    <input matInput required formControlName="fullname">
+                                                </mat-form-field>
+                                                <mat-form-field appearance="outline">
+                                                    <mat-label>Gender</mat-label>
+                                                    <mat-select formControlName="gender">
+
+                                                        <mat-option value="Male">Male</mat-option>
+                                                        <mat-option value="Female">Female</mat-option>
+                                                    </mat-select>
+
+                                                </mat-form-field>
+
+                                            </div>
+
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <mat-form-field appearance="outline">
+                                                    <mat-label>Phone</mat-label>
+                                                    <input matInput required formControlName="phone">
+                                                </mat-form-field>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <mat-form-field appearance="outline">
+                                                    <mat-label>Date of Birth</mat-label>
+                                                    <input [matDatepicker]="myDatepicker2" matInput formControlName="dob">
+                                                    <mat-datepicker-toggle matSuffix [for]="myDatepicker2"></mat-datepicker-toggle>
+                                                    <mat-datepicker #myDatepicker2></mat-datepicker>
+                                                </mat-form-field>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+
+                                            <div class="col-md-6">
+                                                <mat-form-field appearance="outline">
+                                                    <mat-label>Specialty</mat-label>
+                                                    <mat-select required formControlName="specialty">
+                                                        <mat-optgroup *ngFor="let sp of  objectKeys(specialties)" label="{{sp | uppercase}}">
+                                                            <mat-option *ngFor="let d of specialties[sp]" value="{{d}}">{{d | titlecase}}</mat-option>
+                                                        </mat-optgroup>
+
+                                                    </mat-select>
+                                                </mat-form-field>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <mat-form-field appearance="outline">
+                                                    <mat-label>Category</mat-label>
+                                                    <mat-select required formControlName="category">
+                                                        <mat-option value="K-12">K-12</mat-option>
+                                                        <mat-option value="University and College">University and College</mat-option>
+                                                        <mat-option value="Career / Life Long">Career / Life Long</mat-option>
+                                                    </mat-select>
+                                                </mat-form-field>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <mat-form-field appearance="outline">
+                                                    <mat-label>Highest Qualification</mat-label>
+                                                    <input matInput required formControlName="qualification">
+                                                </mat-form-field>
+                                            </div>
+
+                                            <div class="col-md-6">
+                                                <div class="row">
+                                                    <div class="col-8" style="padding: 0;">
+                                                        <mat-form-field appearance="outline">
+                                                            <mat-label>Hourly Rate</mat-label>
+                                                            <input matInput required formControlName="rate">
+                                                        </mat-form-field>
+                                                    </div>
+                                                    <div class="col-4" style="padding: 0;">
+                                                        <mat-form-field appearance="outline">
+                                                            <mat-label>Currency</mat-label>
+                                                            <mat-select required formControlName="currency">
+                                                                <mat-option value="NGN">NGN</mat-option>
+                                                                <mat-option value="USD">USD</mat-option>
+                                                            </mat-select>
+                                                        </mat-form-field>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <mat-form-field appearance="outline">
+                                                    <mat-label>Short Bio</mat-label>
+                                                    <textarea matInput formControlName="bio" required></textarea>
+                                                </mat-form-field>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <button [disabled]="loading" class="pull-right btn-round" mat-raised-button color="primary" type="submit">UPDATE <i class="fa fa-spin fa-spinner" *ngIf="loading"></i></button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+
+                            </mat-tab>
+
+                            <mat-tab>
+                                <ng-template mat-tab-label class="last-label">
+                                    Calendar
+                                </ng-template>
+                                <div class="white-bg">
+                                    <h4 class="text-center">CONFIGURE CALENDER</h4>
+                                    <hr>
+                                    <div class="row">
+                                        <div class="col-md-12 col-sm-12 col-lg-12">
+                                            <div class="row text-center">
+                                                <div class="col-md-4">
+                                                    <div class="btn-group">
+                                                        <div class="btn btn-pry" mwlCalendarPreviousView [view]="view" [(viewDate)]="viewDate" (viewDateChange)="closeOpenMonthViewDay()">
+                                                            Previous
+                                                        </div>
+                                                        <div class="btn btn-outline-secondary" mwlCalendarToday [(viewDate)]="viewDate">
+                                                            Today
+                                                        </div>
+                                                        <div class="btn btn-pry" mwlCalendarNextView [view]="view" [(viewDate)]="viewDate" (viewDateChange)="closeOpenMonthViewDay()">
+                                                            Next
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <h3>{{ viewDate | calendarDate:(view + 'ViewTitle'):'en' }}</h3>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="btn-group">
+                                                        <div class="btn btn-pry" (click)="setView(CalendarView.Month)" [class.active]="view === CalendarView.Month">
+                                                            Month
+                                                        </div>
+                                                        <div class="btn btn-pry" (click)="setView(CalendarView.Week)" [class.active]="view === CalendarView.Week">
+                                                            Week
+                                                        </div>
+                                                        <div class="btn btn-pry" (click)="setView(CalendarView.Day)" [class.active]="view === CalendarView.Day">
+                                                            Day
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <br />
+                                            <div [ngSwitch]="view">
+                                                <mwl-calendar-month-view *ngSwitchCase="CalendarView.Month" [viewDate]="viewDate" [events]="events" [refresh]="refresh" [activeDayIsOpen]="activeDayIsOpen" (dayClicked)="dayClicked($event.day)" (eventClicked)="handleEvent('Clicked', $event.event)" (eventTimesChanged)="eventTimesChanged($event)">
+                                                </mwl-calendar-month-view>
+                                                <mwl-calendar-week-view *ngSwitchCase="CalendarView.Week" [viewDate]="viewDate" [events]="events" [refresh]="refresh" (eventClicked)="handleEvent('Clicked', $event.event)" (eventTimesChanged)="eventTimesChanged($event)">
+                                                </mwl-calendar-week-view>
+                                                <mwl-calendar-day-view *ngSwitchCase="CalendarView.Day" [viewDate]="viewDate" [events]="events" [refresh]="refresh" (eventClicked)="handleEvent('Clicked', $event.event)" (eventTimesChanged)="eventTimesChanged($event)">
+                                                </mwl-calendar-day-view>
+                                            </div>
+
+
+                                        </div>
+                                    </div>
+                                    <div class="space-32"></div>
+
+
+                                </div>
+
+                            </mat-tab>
+                            <mat-tab>
+                                <ng-template mat-tab-label class="last-label">
+                                    Create Subscription
+                                </ng-template>
+                                <div class="white-bg">
+                                    <h4 class="text-center">SUBSCRIPTIONS</h4>
+                                    <hr>
+                                    <div class="row">
+                                        <div class="col-md-12 col-sm-12 col-lg-12">
+                                            <div class="row">
+                                                <div *ngIf="data?.subscriptions.length == 0" class="col-md-12">
+                                                    <app-empty-data (retry)="createSubscription()" actionTitle="Create Subscription" message="Subscription allow your audience to make monthly payment and access all your conents and live events" title="No Available Subscription"></app-empty-data>
+                                                </div>
+                                                <div class="col-md-12" *ngIf="data?.subscriptions.length > 0">
+                                                    <div class="">
+                                                        <button mat-raised-button color="primary" (click)="createSubscription()" class="pull-right btn-round">+ New subscription</button>
+                                                    </div>
+                                                    <table mat-table matSort [dataSource]="dataSource">
+
+                                                        <!-- Name Column -->
+                                                        <ng-container matColumnDef="id">
+                                                            <th mat-header-cell *matHeaderCellDef mat-sort-header> S/N </th>
+                                                            <td mat-cell *matCellDef="let element; let i = index">
+                                                                <div>
+                                                                    {{i + 1}}
+                                                                </div>
+                                                            </td>
+                                                        </ng-container>
+
+                                                        <!-- Name Column -->
+                                                        <ng-container matColumnDef="title">
+                                                            <th mat-header-cell *matHeaderCellDef mat-sort-header> Title </th>
+                                                            <td mat-cell *matCellDef="let element"> {{element.title}} </td>
+                                                        </ng-container>
+                                                        <!-- Name Column -->
+                                                        <ng-container matColumnDef="amount">
+                                                            <th mat-header-cell *matHeaderCellDef mat-sort-header> Amount </th>
+                                                            <td mat-cell *matCellDef="let element"> &#8358;{{element.amount | number:'1.2-2'}} </td>
+                                                        </ng-container>
+
+                                                        <ng-container matColumnDef="duration">
+                                                            <th mat-header-cell *matHeaderCellDef mat-sort-header> Duration </th>
+                                                            <td mat-cell *matCellDef="let element"> {{element.duration / 30}} Month(s) </td>
+                                                        </ng-container>
+
+                                                        <ng-container matColumnDef="view">
+                                                            <th mat-header-cell *matHeaderCellDef mat-sort-header> </th>
+                                                            <td mat-cell *matCellDef="let element">
+                                                                <mat-menu #classMenu="matMenu">
+                                                                    <button (click)="updateSubscription(element.id)" mat-menu-item>EDIT SUBSCRIPTION</button>
+
+                                                                    <button (click)="deleteSubscription(element.id)" mat-menu-item>DELETE SUBSCRIPTION</button>
+
+                                                                </mat-menu>
+                                                                <button [matMenuTriggerFor]="classMenu" matRipple color="accent" type="button" mat-button>
+                                                                    <mat-icon>more_vert</mat-icon>
+                                                              </button>
+                                                            </td>
+                                                        </ng-container>
+
+                                                        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                                                        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                                                    </table>
+                                                    <mat-paginator style="width:100%; " [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <div class="space-32"></div>
+
+
+                                </div>
+
+                            </mat-tab>
+                            <mat-tab>
+                                <ng-template mat-tab-label class="last-label">
+                                    Verification
+                                </ng-template>
+                                <div class="white-bg">
+                                    <h4 class="text-center">VERIFICATION</h4>
+                                    <hr>
+                                    <div class="row">
+                                        <div class="col-md-12 col-sm-12 col-lg-8 offset-lg-2 go-live">
+                                            <div class="row">
+
+                                                <div class="col-12">
+
+                                                    <p>Verified providers will have a badge on their profile, and this shows users interested in your service that you are genuine.
+                                                    </p>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <div class="space-32"></div>
+
+
+                                </div>
+
+                            </mat-tab>
+                        </mat-tab-group>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Begin desktop view-->
+    <div class="row desktop-screen">
+        <div class="col-md-12">
+            <div class="container">
+                <div id="content">
+                    <div id="main-content">
+
+                        <mat-tab-group [(selectedIndex)]="activeTab" class="mat-tab-group-vert">
+
+                            <mat-tab>
+                                <ng-template mat-tab-label>
+                                    Profile
+                                </ng-template>
+                                <div class="white-bg text-center">
+                                    <form [formGroup]="profile" (ngSubmit)="updateProfile(profile)">
+                                        <h4 class="text-center">BASIC INFORMATION</h4>
+                                        <hr>
+                                        <div class="row">
+
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6 text-center">
+                                                <div style="margin: 0 auto">
+
+                                                    <img #cover (click)="input.click()" defaultImage="/assets/images/default.png" lazyLoad="{{avatar}}" style="width:100px; height:100px; border:solid 1px#efefee; border-radius: 50%;" />
+                                                    <input type="file" class="hidden" #input (change)="onFileChange($event)" />
+                                                    <p (click)="input.click()" class="grey-text no-margin margin-top-text upload-text">Upload Photo</p>
+                                                    <p style="margin-top: -12px;">{{data?.user.email}}</p>
+
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <mat-form-field appearance="outline">
+                                                    <mat-label>Full Name</mat-label>
+                                                    <input matInput required formControlName="fullname">
+                                                </mat-form-field>
+                                                <mat-form-field appearance="outline">
+                                                    <mat-label>Gender</mat-label>
+                                                    <mat-select formControlName="gender">
+
+                                                        <mat-option value="Male">Male</mat-option>
+                                                        <mat-option value="Female">Female</mat-option>
+                                                    </mat-select>
+
+                                                </mat-form-field>
+
+                                            </div>
+
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <mat-form-field appearance="outline">
+                                                    <mat-label>Phone</mat-label>
+                                                    <input matInput required formControlName="phone">
+                                                </mat-form-field>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <mat-form-field appearance="outline">
+                                                    <mat-label>Date of Birth</mat-label>
+                                                    <input [matDatepicker]="myDatepicker" matInput formControlName="dob">
+                                                    <mat-datepicker-toggle matSuffix [for]="myDatepicker"></mat-datepicker-toggle>
+                                                    <mat-datepicker #myDatepicker></mat-datepicker>
+                                                </mat-form-field>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+
+
+                                            <div class="col-md-6">
+                                                <mat-form-field appearance="outline">
+                                                    <mat-label>Category</mat-label>
+                                                    <mat-select required formControlName="category">
+                                                        <mat-option value="K-12">K-12</mat-option>
+                                                        <mat-option value="University and College">University and College</mat-option>
+                                                        <mat-option value="Career / Life Long">Career / Life Long</mat-option>
+                                                    </mat-select>
+                                                </mat-form-field>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <mat-form-field appearance="outline">
+                                                    <mat-label>Specialty</mat-label>
+                                                    <mat-select required formControlName="specialty">
+                                                        <mat-optgroup *ngFor="let sp of  objectKeys(specialties)" label="{{sp | uppercase}}">
+                                                            <mat-option *ngFor="let d of specialties[sp]" value="{{d}}">{{d | titlecase}}</mat-option>
+                                                        </mat-optgroup>
+                                                    </mat-select>
+                                                </mat-form-field>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <mat-form-field appearance="outline">
+                                                    <mat-label>Highest Qualification</mat-label>
+                                                    <input matInput required formControlName="qualification">
+                                                </mat-form-field>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="row">
+                                                    <div class="col-8" style="padding: 0;">
+                                                        <mat-form-field appearance="outline">
+                                                            <mat-label>Hourly Rate</mat-label>
+                                                            <input matInput required formControlName="rate">
+                                                        </mat-form-field>
+                                                    </div>
+                                                    <div class="col-4" style="padding: 0;">
+                                                        <mat-form-field appearance="outline">
+                                                            <mat-label>Currency</mat-label>
+                                                            <mat-select required formControlName="currency">
+                                                                <mat-option value="NGN">NGN</mat-option>
+                                                                <mat-option value="USD">USD</mat-option>
+                                                            </mat-select>
+                                                        </mat-form-field>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <mat-form-field appearance="outline">
+                                                    <mat-label>Short Bio</mat-label>
+                                                    <textarea matInput formControlName="bio" required></textarea>
+                                                </mat-form-field>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <button [disabled]="loading" class="pull-right btn-round" mat-raised-button color="primary" type="submit">UPDATE <i class="fa fa-spin fa-spinner" *ngIf="loading"></i></button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+
+                            </mat-tab>
+
+                            <mat-tab>
+                                <ng-template mat-tab-label class="last-label">
+                                    Calendar
+                                </ng-template>
+                                <div class="white-bg">
+                                    <h4 class="text-center">CONFIGURE CALENDER</h4>
+                                    <hr>
+                                    <div class="row">
+                                        <div class="col-md-12 col-sm-12 col-lg-12">
+                                            <div class="row text-center">
+                                                <div class="col-md-4">
+                                                    <div class="btn-group">
+                                                        <div class="btn btn-pry" mwlCalendarPreviousView [view]="view" [(viewDate)]="viewDate" (viewDateChange)="closeOpenMonthViewDay()">
+                                                            Previous
+                                                        </div>
+                                                        <div class="btn btn-outline-secondary" mwlCalendarToday [(viewDate)]="viewDate">
+                                                            Today
+                                                        </div>
+                                                        <div class="btn btn-pry" mwlCalendarNextView [view]="view" [(viewDate)]="viewDate" (viewDateChange)="closeOpenMonthViewDay()">
+                                                            Next
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <h3>{{ viewDate | calendarDate:(view + 'ViewTitle'):'en' }}</h3>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="btn-group">
+                                                        <div class="btn btn-pry" (click)="setView(CalendarView.Month)" [class.active]="view === CalendarView.Month">
+                                                            Month
+                                                        </div>
+                                                        <div class="btn btn-pry" (click)="setView(CalendarView.Week)" [class.active]="view === CalendarView.Week">
+                                                            Week
+                                                        </div>
+                                                        <div class="btn btn-pry" (click)="setView(CalendarView.Day)" [class.active]="view === CalendarView.Day">
+                                                            Day
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <br />
+                                            <div [ngSwitch]="view">
+                                                <mwl-calendar-month-view *ngSwitchCase="CalendarView.Month" [viewDate]="viewDate" [events]="events" [refresh]="refresh" [activeDayIsOpen]="activeDayIsOpen" (dayClicked)="dayClicked($event.day)" (eventClicked)="handleEvent('Clicked', $event.event)">
+                                                </mwl-calendar-month-view>
+                                                <mwl-calendar-week-view *ngSwitchCase="CalendarView.Week" [viewDate]="viewDate" [events]="events" [refresh]="refresh" (eventClicked)="handleEvent('Clicked', $event.event)">
+                                                </mwl-calendar-week-view>
+                                                <mwl-calendar-day-view *ngSwitchCase="CalendarView.Day" [viewDate]="viewDate" [events]="events" [refresh]="refresh" (eventClicked)="handleEvent('Clicked', $event.event)">
+                                                </mwl-calendar-day-view>
+                                            </div>
+
+
+                                        </div>
+                                    </div>
+                                    <div class="space-32"></div>
+
+
+                                </div>
+
+                            </mat-tab>
+                            <mat-tab>
+                                <ng-template mat-tab-label class="last-label">
+                                    Create Subscription
+                                </ng-template>
+                                <div class="white-bg">
+                                    <h4 class="text-center">SUBSCRIPTIONS</h4>
+                                    <hr>
+                                    <div class="row">
+                                        <div class="col-md-12 col-sm-12 col-lg-12">
+                                            <div class="row">
+                                                <div *ngIf="data?.subscriptions.length == 0" class="col-md-12">
+                                                    <app-empty-data (retry)="createSubscription()" actionTitle="Create Subscription" message="Subscription allow your audience to make monthly payment and access all your conents and live events" title="No Available Subscription"></app-empty-data>
+                                                </div>
+                                                <div class="col-md-12" *ngIf="data?.subscriptions.length > 0">
+                                                    <div class="">
+                                                        <button mat-raised-button color="primary" (click)="createSubscription()" class="pull-right btn-round">+ New subscription</button>
+                                                    </div>
+                                                    <table mat-table matSort [dataSource]="dataSource">
+
+                                                        <!-- Name Column -->
+                                                        <ng-container matColumnDef="id">
+                                                            <th mat-header-cell *matHeaderCellDef mat-sort-header> S/N </th>
+                                                            <td mat-cell *matCellDef="let element; let i = index">
+                                                                <div>
+                                                                    {{i + 1}}
+                                                                </div>
+                                                            </td>
+                                                        </ng-container>
+
+                                                        <!-- Name Column -->
+                                                        <ng-container matColumnDef="title">
+                                                            <th mat-header-cell *matHeaderCellDef mat-sort-header> Title </th>
+                                                            <td mat-cell *matCellDef="let element"> {{element.title}} </td>
+                                                        </ng-container>
+                                                        <!-- Name Column -->
+                                                        <ng-container matColumnDef="amount">
+                                                            <th mat-header-cell *matHeaderCellDef mat-sort-header> Amount </th>
+                                                            <td mat-cell *matCellDef="let element"> &#8358;{{element.amount | number:'1.2-2'}} </td>
+                                                        </ng-container>
+
+                                                        <ng-container matColumnDef="duration">
+                                                            <th mat-header-cell *matHeaderCellDef mat-sort-header> Duration </th>
+                                                            <td mat-cell *matCellDef="let element"> {{element.duration / 30}} Month(s) </td>
+                                                        </ng-container>
+
+                                                        <ng-container matColumnDef="view">
+                                                            <th mat-header-cell *matHeaderCellDef mat-sort-header> </th>
+                                                            <td mat-cell *matCellDef="let element">
+                                                                <mat-menu #classMenu="matMenu">
+                                                                    <button (click)="updateSubscription(element.id)" mat-menu-item>EDIT SUBSCRIPTION</button>
+
+                                                                    <button (click)="deleteSubscription(element.id)" mat-menu-item>DELETE SUBSCRIPTION</button>
+
+                                                                </mat-menu>
+                                                                <button [matMenuTriggerFor]="classMenu" matRipple color="accent" type="button" mat-button>
+                                                                <mat-icon>more_vert</mat-icon>
+                                                          </button>
+                                                            </td>
+                                                        </ng-container>
+
+                                                        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                                                        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                                                    </table>
+                                                    <mat-paginator style="width:100%; " [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <div class="space-32"></div>
+
+
+                                </div>
+
+                            </mat-tab>
+                            <mat-tab>
+                                <ng-template mat-tab-label class="last-label">
+                                    Verification
+                                </ng-template>
+                                <div class="white-bg">
+                                    <h4 class="text-center">VERIFICATION </h4>
+                                    <hr>
+                                    <div class="row">
+                                        <div class="col-md-12 col-sm-12 col-lg-8 offset-lg-2 go-live">
+                                            <div class="row">
+
+                                                <div class="col-12">
+
+                                                    <p>Verified providers will have a badge on their profile, and this shows users interested in your service that you are genuine.
+                                                    </p>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <div class="space-32"></div>
+
+
+                                </div>
+
+                            </mat-tab>
+
+                        </mat-tab-group>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row" *ngIf="loader">
+    <div class="col-12">
+        <app-loading></app-loading>
+    </div>
+</div>
+
+<div class="row" *ngIf="failure">
+    <div class="col-12">
+        <app-nework-failure (retry)="ngOnInit()"></app-nework-failure>
+    </div>
+</div>

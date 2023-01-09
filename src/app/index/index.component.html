@@ -1,0 +1,115 @@
+<app-navbar></app-navbar>
+<div class="main-w3pvt mian-content-wthree text-center" id="home">
+    <div class="container">
+        <div class="style-banner mx-auto">
+            <h3 class="text-wh font-weight-bold" style="font-size: 3rem; line-height: 100%;">Learn anything from <span>professional</span> tutors</h3>
+            <p class="mt-3 text-li" id="join">Book one-on-one class or join a group class from anywhere.</p>
+
+            <div class="home-form-w3ls mt-5">
+
+                <form [formGroup]="searchForm" (ngSubmit)="search(searchForm)" style="position: relative; top: 0;">
+                    <div class="row text-center">
+
+                        <div class="col-lg-4 text-center">
+                            <div class="form-group">
+                                <input class="form-control" type="text" formControlName="term" placeholder="Search by name">
+                            </div>
+                        </div>
+                        <div class="col-lg-3 text-center">
+                            <div class="form-group">
+                                <select class="form-control" formControlName="specialty" style="height:46px;">
+                                    <option value="">Specialty</option>
+                                    <optgroup *ngFor="let sp of  objectKeys(specialties)" label="{{sp | uppercase}}">
+                                        <option *ngFor="let d of specialties[sp]" value="{{d}}">{{d | titlecase}}</option>
+                                    </optgroup>
+                                   
+                                </select>
+
+                            </div>
+                        </div>
+
+                        <div class="col-lg-3 text-center">
+                            <div class="form-group">
+                                <select class="form-control" formControlName="category" style="height:46px;">
+                                    <option value="">Category</option>
+                                    <option value="K-12">K-12</option>
+                                    <option value="University and College">University and College</option>
+                                    <option value="Career / Life Long">Career / Life Long</option>
+                                </select>
+
+                            </div>
+                        </div>
+
+                        <div class="col-lg-2 text-center">
+                            <div class="form-group">
+                                <button type="submit" class="btn_apt btn-block btn">Search</button>
+                            </div>
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<section style="background-color: #058d82;" class="padding-top padding-bottom">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <p class="text-body-bold">
+                    From <b>art, music, coding, content creation, marketing, lifystle, economic, law, wellness, and even stem subjects. Clique</b> have the best people in all field that can coach you to <b>mastery</b> through online courses, ono-on-one
+                    classes, and live events.
+
+                </p>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section style="background: linear-gradient(to left, #1B4942 50%, #222 50%);" class="padding-top padding-bottom">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 text-center" style="background: linear-gradient(to left, #1B4942 50%, #1B4942 50%); padding: 32px;">
+                <img src="/assets/images/join4.jpg" />
+            </div>
+            <div class="col-md-6 text-center">
+                <div class="row">
+                    <div class="col-md-11 offset-md-1 text-center">
+                        <p class="text-body-join" style="margin-top: 64px;">Find and book a one-on-one session from our catalogs of professional tutors and coaches</p>
+                        <p style="margin-top:32px"><button class="btn-round" mat-raised-button color="primary" routerLink="/catalogs">FIND A TUTOR </button></p>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</section>
+
+
+<section style="background-color: #333333; border-bottom: solid 1px#fff;" class="gray-bg padding-top padding-bottom">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 text-center" style="background: linear-gradient(to left, #1B4942 50%, #222 50%); padding: 32px;">
+                <img src="/assets/images/join3.jpg" />
+            </div>
+            <div class="col-md-6 text-center">
+                <div class="row">
+                    <div class="col-md-12 text-center">
+                        <p class="text-body-join" style="margin-top: 32px;">Join over 1,000 professional tutors and creators using Clique to deliver online classes and monetize their contents</p>
+                        <p style="margin-top:32px"><button class="btn-round" mat-raised-button color="primary" routerLink="/register/tutor">JOIN AS A TUTOR </button></p>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</section>
+
+
+<app-footer></app-footer>

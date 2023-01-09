@@ -1,0 +1,114 @@
+<div class="add-card">
+
+    <div class="container" *ngIf="success">
+
+        <div class="row" style="margin:0px">
+
+            <div class="col-lg-11 col-md-11 col-sm-10 col-10">
+                <p class="mat-subheading-2 greyer-text">BOOKING DETAILS</p>
+                <p class="mat-body grey-text"></p>
+            </div>
+
+            <div class="col-lg-1 col-md-1 col-sm-2 col-2">
+                <button type="button" class="mat-icon-button" mat-icon-button matRippleCentered="true" matRipple (click)="close()">
+                <mat-icon>close</mat-icon>
+              </button>
+            </div>
+
+
+            <div class="col-lg-12 col-md-12 col-sm-12 col-12">
+            </div>
+            <div class="row" style="margin:0px;">
+
+                <div class="col-md-2 col-4">
+
+                    <img class="circle-bg" style="width:50px; height:50px;" defaultImage="/assets/images/default.png" lazyLoad="{{avatar}}" />
+
+                </div>
+
+                <div class="col-md-8 col-6" style="padding-left:0px; padding-right:0px; margin-left: 16px;">
+
+                    <div class="row" style="margin-left:4px;">
+                        <div class="col-12" style="padding-left:0px;">
+                            <p style="color:#6a707e; margin-top:0px; margin-bottom: 0px;">{{data.user.fullname}}</p>
+                            <p style="color:#a6b1c2">
+                                {{data.user.email}}
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="row" style="margin-right:0px; margin-left:16px; margin-top:8px;">
+                <div class="col-12">
+                    <p *ngIf="data.booking.status=='pending'" style="color:#a6b1c2; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">
+                        <a target="__blank" style="color:#a6b1c2; margin-top: -6px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;" href="{{data.booking.meetinglink}}">
+                            <mat-icon style="color:#0aa89e">location_on</mat-icon> {{data.booking.meetinglink}}</a>
+                    </p>
+                </div>
+
+                <div class="col-6" style="padding-left:0px">
+                    <p style="display:flex">
+                        <mat-icon style="color:#0aa89e; margin-right:8px">date_range</mat-icon>{{data.booking.date_}}
+                    </p>
+                </div>
+
+                <div class="col-6" style="padding-left:0px">
+                    <p style="display:flex">
+                        <mat-icon style="color:#0aa89e; margin-right:8px">access_time</mat-icon> {{data.booking.time_}}
+                    </p>
+                </div>
+                <div class="col-12 text-center" style="padding-left:0px">
+                    <p style="color:#6a707e; margin-top:12px; margin-bottom: 0px;">
+                        {{data.booking.comment}}
+                    </p>
+                </div>
+
+            </div>
+
+            <div *ngIf="data.booking.status=='pending'" style="width:100%; margin-top:16px;" class="text-center">
+                <a href="{{data.booking.meetinglink}}" target="__blank" class="confirmButton" mat-raised-button color="primary" [disabled]="formLoading">
+                    <mat-icon class="material-icons-outlined">play_circle_outline</mat-icon>
+                    <b>START MEETING</b>
+                </a>
+                <div style="margin-top: 12px;">
+                    <button (click)="fulfill()" class="confirmButton" mat-raised-button color="accent">
+                        <mat-icon class="material-icons-outlined">check_circle</mat-icon>
+                      MARK AS FULFILLED <i class="fa fa-spin fa-spinner" *ngIf="loading"></i>
+                    </button>
+                </div>
+
+            </div>
+
+            <div *ngIf="data.booking.status=='complete'" style="width:100%; margin-top:16px;" class="text-center">
+
+                <button href="#" class="confirmButton" mat-raised-button color="primary">
+                    <mat-icon class="material-icons-outlined">check_circle</mat-icon>
+                   APPOINTMENT FULFILLED
+                </button>
+            </div>
+        </div>
+
+
+    </div>
+
+    <div class="row" *ngIf="loader">
+        <div class="col-12">
+            <app-loading></app-loading>
+        </div>
+    </div>
+
+    <div class="row" *ngIf="failure">
+        <div class="col-12">
+            <app-nework-failure (retry)="ngOnInit()"></app-nework-failure>
+        </div>
+    </div>
+
+    <div class="white-card">
+
+    </div>
+
+
+</div>

@@ -1,0 +1,470 @@
+/* You can add global styles to this file, and also import other style files */
+
+html,
+body {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.primary-color {
+    color: #ff4f1e;
+}
+
+@import '~@angular/material/theming';
+//Custom theme color
+
+/* For use in src/lib/core/theming/_palette.scss */
+
+$md-mprimary: ( 50: #ffebe4, 100: #ffcdbd, 200: #ffab91, 300: #ff8964, 400: #ff7043, 500: #ff5722, 600: #ff4f1e, 700: #ff4619, 800: #ff3c14, 900: #ff2c0c, A100: #ffffff, A200: #fff7f6, A400: #ffc9c3, A700: #ffb2a9, contrast: ( 50: #000000, 100: #000000, 200: #000000, 300: #000000, 400: #000000, 500: #000000, 600: #ffffff, 700: #ffffff, 800: #ffffff, 900: #ffffff, A100: #000000, A200: #000000, A400: #000000, A700: #000000, ));
+$md-msecondary: ( 50: #e2f5f3, 100: #b6e5e2, 200: #85d4cf, 300: #54c2bb, 400: #2fb5ad, 500: #0aa89e, 600: #09a096, 700: #07978c, 800: #058d82, 900: #037d70, A100: #aafff5, A200: #77ffef, A400: #44ffe9, A700: #2affe6, contrast: ( 50: #000000, 100: #000000, 200: #000000, 300: #000000, 400: #000000, 500: #ffffff, 600: #ffffff, 700: #ffffff, 800: #ffffff, 900: #ffffff, A100: #000000, A200: #000000, A400: #000000, A700: #000000, ));
+// Plus imports for other components in your app.
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// Be sure that you only ever include this mixin once!
+@include mat-core();
+// Define the palettes for your theme using the Material Design palettes available in palette.scss
+// (imported above). For each palette, you can optionally specify a default, lighter, and darker
+// hue. Available color palettes: https://material.io/design/color/
+$candy-app-primary: mat-palette($md-mprimary, 600, 700, 800);
+$candy-app-accent: mat-palette($md-msecondary, 500, 600, 700);
+// The warn palette is optional (defaults to red).
+$candy-app-warn: mat-palette($mat-red);
+// Create the theme object (a Sass map containing all of the palettes).
+$candy-app-theme: mat-light-theme($candy-app-primary, $candy-app-accent, $candy-app-warn);
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component
+// that you are using.
+@include angular-material-theme($candy-app-theme);
+.bg-gray {
+    background-color: #efefee;
+    min-height: 100vh;
+}
+
+.bg-white {
+    background-color: #ffffff;
+}
+
+.bg-green {
+    background-color: #0aa89e;
+    color: #ffffff;
+}
+
+a {
+    text-decoration: none !important;
+}
+
+.btn-lg {
+    padding: 8px !important;
+    padding-right: 32px !important;
+    padding-left: 32px !important;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+a,
+td {
+    font-family: Ubuntu, sans-serif!important;
+}
+
+th.mat-sort-header-sorted {
+    color: black;
+}
+
+.tabs-background {
+    border-radius: 5px;
+    background-color: rgb(255, 255, 255);
+    box-shadow: 0px 6px 20px 0px rgba(193, 207, 217, 0.2);
+    padding-top: 16px;
+    padding-bottom: 16px;
+    padding-left: 16px;
+    width: 100%;
+}
+
+.search {
+    border-style: solid;
+    border-width: 1px;
+    border-color: rgb(230, 234, 240);
+    background-color: rgb(255, 255, 255);
+    max-width: 320px;
+    padding: 6px;
+    display: flex;
+    border-radius: 20px;
+}
+
+.search-wider {
+    border-style: solid;
+    border-width: 1px;
+    border-color: rgb(230, 234, 240);
+    background-color: rgb(255, 255, 255);
+    max-width: 360px;
+    padding: 6px;
+    display: flex;
+    border-radius: 20px;
+}
+
+.search-icon {
+    font-size: 18px;
+    height: 18px;
+    vertical-align: middle;
+    margin-left: 8px;
+    margin-top: 4px;
+    color: rgb(170, 170, 170);
+}
+
+.search-input {
+    color: #646d82;
+    border: none;
+    flex: 1;
+    font-family: "Open Sans";
+    font-weight: 450;
+    padding-left: 8px;
+    font-size: 15px;
+}
+
+.icon-bg {
+    border-style: solid;
+    border-width: 2px;
+    margin-left: 16px;
+    height: 40px;
+    cursor: pointer;
+    width: 40px;
+    border-color: rgb(230, 234, 240);
+    border-radius: 50%;
+    background-color: rgb(255, 255, 255);
+}
+
+.icon-bg:hover {
+    background-color: rgb(230, 234, 240);
+}
+
+.tab-indicator-text {
+    color: #5b5b5b;
+    margin-top: 5px;
+    margin-bottom: 0px;
+    text-decoration: none !important;
+    padding-bottom: 0px;
+    font-weight: normal;
+    border-bottom: 2px solid white;
+}
+
+.tab-indicator-active {
+    color: #0aa89e !important;
+    font-weight: 450;
+}
+
+.tab-indicator-inactive2 {
+    color: #043f3b !important;
+    font-weight: 450;
+}
+
+.row {
+    width: 100% !important;
+    margin: 0 !important;
+}
+
+.tabs-background {
+    margin-bottom: 16px !important;
+}
+
+.tab-indicator-inactive {
+    color: #ff4f1e !important;
+    font-weight: 450;
+}
+
+.tab-indicator-text:hover {
+    color: #ff4f1e !important;
+    font-weight: 450;
+}
+
+.patient-bg {
+    background: #ff4f1e;
+    color: #ffffff !important
+}
+
+.btn-green {
+    background: #0aa89e;
+    border: #0aa89e;
+    color: #ffffff !important
+}
+
+.btn-green:hover {
+    background: #0aa89e;
+    border: #0aa89e;
+    color: #ffffff !important
+}
+
+.tab-padded-text {
+    padding-left: 12px;
+    padding-right: 12px;
+    padding-bottom: 6px;
+}
+
+input {
+    outline: none;
+}
+
+table {
+    min-width: 100%;
+    padding: 16px;
+}
+
+.center {
+    margin: 0 auto !important;
+}
+
+.upload-text {
+    cursor: pointer;
+}
+
+.hidden {
+    display: none;
+}
+
+div {
+    outline: none;
+}
+
+mat-form-field {
+    width: 100%;
+}
+
+.mat-radio-label-content {
+    width: 100% !important;
+}
+
+dropzone>.dropzone.dz-wrapper .dz-message {
+    position: relative;
+    display: inline-block;
+    overflow: auto;
+    width: calc(100% - 16px);
+    min-width: calc(100% - 16px);
+    min-height: 90px !important;
+    max-width: calc(100% - 16px);
+    max-height: 100%;
+    margin: 8px;
+    border: 2px dashed #aaa;
+    background-color: #eee;
+}
+
+mat-seek-progress-control {
+    width: 100% !important;
+}
+
+.progress {
+    height: 46px !important;
+}
+
+.controls .progress {
+    width: 100% !important;
+}
+
+.overflow {
+    overflow: hidden;
+}
+
+.mat-card-header-text {
+    width: 100% !important;
+}
+
+@media (min-width:768px) {
+    .padding-right {
+        padding: 0px !important;
+        padding-right: 6px !important;
+    }
+    .padding-left {
+        padding: 0px !important;
+        padding-left: 6px !important;
+    }
+}
+
+@media (max-width:767px) {
+    .padding-right {
+        padding: 0px !important;
+        padding-right: 0px !important;
+    }
+    .padding-left {
+        padding: 0px !important;
+        padding-left: 0px !important;
+    }
+}
+
+.mat-form-field-suffix {
+    top: 0 !important;
+}
+
+.panel-shadow-header {
+    -webkit-box-shadow: 0 2px 4px rgba(0, 0, 0, .08);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, .08);
+}
+
+.table-filter-input {
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+.table-filter-input:hover,
+.table-filter-input:active,
+.table-filter-input:focus {
+    outline: none !important;
+    box-shadow: none !important;
+    border: 1px solid #0aa89e;
+}
+
+.card-white {
+    background-color: white !important;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    border-radius: 8px;
+}
+
+.card-info {
+    background-color: white !important;
+    padding: 16px;
+    border-radius: 8px;
+}
+
+.mat-table td.mat-cell {
+    // border-bottom: none !important;
+    // border-bottom-color: transparent !important;
+    border-bottom: 1px solid #efefee !important;
+}
+
+.mat-table td {
+    padding-top: 8px !important;
+    padding-bottom: 8px !important;
+}
+
+.mat-table tr td {
+    padding-top: 8px !important;
+    padding-bottom: 8px !important;
+}
+
+tr {
+    // box-shadow: 0 0 3px #e5e5e5;
+}
+
+.view-icons-bordered {
+    background-color: #fff;
+    border: 1px solid #e3e3e3;
+    color: #888;
+    font-size: 18px;
+    margin-right: 5px;
+    min-width: 40px;
+    padding: 4px;
+}
+
+.card-curved {
+    border-radius: 8px;
+}
+
+.card-curved-8 {
+    border-radius: 8px !important;
+}
+
+.radius-top-8 {
+    border-top-left-radius: 8px !important;
+    border-top-right-radius: 8px !important;
+}
+
+.ellipsize-text-one-line {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+img:focus,
+img:active,
+img:hover {
+    outline: none !important;
+}
+
+.StripeElement {
+    padding-left: 6px !important;
+    border: solid 1.5px#efefee !important;
+    border-radius: 5px !important;
+}
+
+.ql-editor {
+    min-height: 120px !important;
+}
+
+.rounded-dialog .mat-dialog-container {
+    /* overflow: hidden; */
+    border-radius: 12px !important;
+    /* padding: 5px; */
+}
+
+.modal-title-wrapper {
+    border-bottom: solid 1px #efefee;
+    padding-right: 16px !important;
+    padding-left: 16px !important;
+    padding-bottom: 8px !important;
+    padding-top: 16px;
+}
+
+.rounded-dialog .mat-dialog-container {
+    padding: 0px !important;
+}
+
+.fixed-top {
+    z-index: 1000 !important;
+}
+
+.modal-header .close {
+    padding: 1rem 1rem;
+    margin: -1rem -1rem -1rem auto
+}
+
+.modal-title {
+    margin-bottom: 0;
+    line-height: 1.5;
+    font-weight: 600 !important;
+}
+
+.instructor-badge {
+    margin-left: 0px !important;
+    color: #058d82;
+    outline: none !important;
+}
+
+.instructor-badge:hover {
+    color: #058d82 !important;
+}
+
+@media (max-width:400px) {
+    .instructor-badge {
+        display: none !important;
+    }
+}
+
+.btn-round {
+    border-radius: 5rem !important;
+    min-width: 140px !important;
+    padding-top: 4px !important;
+    padding-bottom: 2px !important;
+}
+
+.btn-pry {
+    background-color: #ff4f1e;
+    color: #ffffff;
+    border: #ff4f1e
+}
+
+.btn-pry.active {
+    background-color: #b92800;
+    color: #ffffff;
+    border: #b92800;
+}
+
+.cal-event-action {
+    color: #ffffff !important;
+}

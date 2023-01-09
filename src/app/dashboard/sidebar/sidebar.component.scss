@@ -1,0 +1,275 @@
+.nav-icon {
+    padding: 0 14px;
+}
+
+.nav-spacer {
+    flex: 1 1 auto;
+}
+
+.app-container {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+.app-is-mobile .app-toolbar {
+    position: fixed;
+    /* Make sure the toolbar will stay on top of the content as it scrolls past. */
+    z-index: 2;
+}
+
+h1.app-name {
+    margin-left: 8px;
+}
+
+.app-sidenav-container {
+    /* When the sidenav is not fixed, stretch the sidenav container to fill the available space. This
+         causes `<mat-sidenav-content>` to act as our scrolling element for desktop layouts. */
+    flex: 1;
+}
+
+.app-is-mobile .app-sidenav-container {
+    /* When the sidenav is fixed, don't constrain the height of the sidenav container. This allows the
+         `<body>` to be our scrolling element for mobile layouts. */
+    flex: 1 0 auto;
+}
+
+.sidebar {
+    /* //  background-color: #f9f9f9 !important; */
+    color: white !important;
+    background-color: #1D2B36 !important;
+    margin-right: -16px;
+    font-weight: 400;
+    font-size: 14px;
+    min-width: 270px !important;
+    max-width: 270px !important;
+    -webkit-box-shadow: 1px 0px 20px rgba(0, 0, 0, 0.08);
+    box-shadow: 1px 0px 20px rgba(0, 0, 0, 0.08);
+}
+
+.sidebar a.active {
+    // background-color: #0aa89e;
+    // border-top-right-radius: 30px;
+    // border-bottom-right-radius: 30px;
+    // border-left: solid 6px #043f3b;
+    // color: #ffffff !important;
+    // font-weight: 700 !important;
+    font-weight: 700;
+    background: #121b22;
+    border-right: 4px solid #0aa89e;
+}
+
+.sidebar a.active p.mat-line {
+    font-weight: 700 !important;
+    margin-top: 2px;
+    color: #fff;
+}
+
+.sidebar a:hover {
+    // opacity: 0.8;
+    color: #C3C3C3;
+    background-color: #162029;
+}
+
+.sidebar a {
+    color: #DCDCDC !important;
+    font-size: 16px !important;
+    padding: 0px;
+    height: 50px;
+    margin-bottom: 8px;
+    font-family: Muli, Georgia, 'Times New Roman', Times, serif;
+    font-weight: 400;
+    font-size: 1.4rem;
+    letter-spacing: .2px;
+    line-height: 1.8;
+}
+
+.sidebar mat-icon {
+    color: #DCDCDC !important;
+}
+
+.img-circle {
+    height: 40px !important;
+    width: 40px !important;
+    border-radius: 50%;
+    border: solid 2px#efefee;
+}
+
+.mat-line {
+    padding-right: 32px !important;
+    padding-left: -16px !important;
+}
+
+.mat-nav-list .mat-list-item.mat-list-item-with-avatar {
+    height: 58px !important;
+    margin-bottom: 0px;
+}
+
+.mat-list-text {
+    padding-left: -16px !important;
+}
+
+mat-list-item p {
+    margin-top: 5px !important;
+    margin-left: -8px !important;
+}
+
+.mat-menu {
+    position: absolute;
+    top: 300px;
+    left: 1000px;
+}
+
+button.mat-menu-item {
+    min-width: 170px;
+}
+
+a {
+    text-decoration: none;
+}
+
+.sidebar a mat-icon {
+    float: left;
+    margin-right: 4px;
+    width: 24px;
+    text-align: center;
+    line-height: 24px;
+    font-size: 24px;
+    color: #3b3b3b;
+}
+
+.sidebar a.active mat-icon {
+    float: left;
+    margin-right: 4px;
+    width: 24px;
+    text-align: center;
+    line-height: 24px;
+    font-size: 24px;
+    color: #ffffff !important;
+}
+
+.app-toolbar {
+    background-color: #ffffff;
+    position: sticky;
+    position: -webkit-sticky;
+    /* For macOS/iOS Safari */
+    top: 0;
+    /* Sets the sticky toolbar to be on top */
+    z-index: 1000;
+    /* Ensure that your app's content doesn't overlap the toolbar */
+}
+
+.blue {
+    color: #3f51b5 !important;
+}
+
+.green {
+    color: #0aa89e !important;
+}
+
+.blue {
+    color: #79C0F7 !important;
+}
+
+.padding {
+    padding: 16px;
+}
+
+@media (max-width:600px) {
+    .sidepadding {
+        padding-right: 16px;
+        padding-left: 16px;
+    }
+}
+
+@media (min-width:601px) {
+    .sidepadding {
+        padding-right: 32px;
+        padding-left: 32px;
+    }
+}
+
+
+/* for submenui */
+
+.example-container {
+    height: 500px;
+    border: 1px solid rgba(0, 0, 0, 0.5);
+}
+
+.example-sidenav-content {
+    display: flex;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+}
+
+.example-sidenav {
+    user-select: none;
+}
+
+.full-width {
+    width: 100%;
+}
+
+.menu-button {
+    transition: 300ms ease-in-out;
+    transform: rotate(0deg);
+}
+
+.menu-button.rotated {
+    transform: rotate(180deg);
+}
+
+.submenu {
+    overflow-y: hidden;
+    transition: transform 300ms ease;
+    transform: scaleY(0);
+    transform-origin: top;
+    padding-left: 30px;
+}
+
+.submenu.expanded {
+    transform: scaleY(1);
+}
+
+.checkingdisplay {
+    display: none;
+}
+
+@media (min-width:1020px) {
+    .page-container {
+        margin-top: 16px;
+        margin-bottom: 32px;
+        margin-left: 16px;
+        margin-right: 16px;
+    }
+}
+
+@media (max-width:1020px) {
+    .page-container {
+        margin-top: 16px;
+        margin-bottom: 32px;
+        margin-left: 0px;
+        margin-right: 0px;
+    }
+}
+
+.navbar-shadow {
+    -webkit-box-shadow: 0 2px 4px rgba(0, 0, 0, .08);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, .08);
+}
+
+.dropdown-text {
+    padding-right: 0px !important;
+    margin-top: 14px;
+    padding-left: 16px;
+}
+
+.dropdown-hide {
+    display: none !important;
+}

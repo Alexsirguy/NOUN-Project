@@ -1,0 +1,89 @@
+<div class="container-fluid">
+
+    <div class="row" *ngIf="success">
+        <div class="col-md-7 col-sm-12 text-center margin-bottom">
+            <div class="panel-shadow-header card-info" style="width:100%;">
+                <div>
+                    <h3>Bank Account</h3>
+                    <hr>
+                </div>
+                <form [formGroup]="loginForm" (ngSubmit)="bankUpdate(loginForm)">
+
+                    <div class="example-container">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <mat-form-field appearance="outline">
+                                    <mat-label>Account Name</mat-label>
+                                    <input matInput type="text" required formControlName="accountname" placeholder="Account Name">
+                                </mat-form-field>
+                            </div>
+                            <div class="col-md-6">
+                                <mat-form-field appearance="outline">
+                                    <mat-label>Account Number</mat-label>
+                                    <input matInput type="text" maxlength="14" required formControlName="accountnumber" placeholder="Account Number">
+                                </mat-form-field>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <mat-form-field appearance="outline">
+                                    <mat-label>Bank Name</mat-label>
+                                    <input matInput type="text" required formControlName="bankname" placeholder="Bank Name">
+                                </mat-form-field>
+                            </div>
+                            <div class="col-md-6">
+                                <mat-form-field appearance="outline">
+                                    <mat-label>Country</mat-label>
+                                    <input matInput type="text" required formControlName="country" placeholder="Country">
+                                </mat-form-field>
+                            </div>
+                        </div>
+
+
+                        <div class="form-group" style="margin-bottom: 48px; margin-top:32px;">
+
+                            <div class="flex-spacer"></div>
+                            <button type="submit" mat-raised-button color="primary" class="btn btn-lg btn-round" [disabled]="loading">SAVE CHANGES <i class="fa fa-spin fa-spinner"
+                                                                    *ngIf="loading"></i></button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div class="col-md-5 col-sm-12 text-center">
+            <div class="panel-shadow-header card-info" style="width:100%;">
+                <div>
+                    <h3>Paypal Account</h3>
+                    <hr>
+                </div>
+                <form [formGroup]="paypalForm" (ngSubmit)="paypalUpdate(paypalForm)">
+
+                    <div class="example-container">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <mat-form-field appearance="outline">
+                                    <mat-label>Account Email</mat-label>
+                                    <input matInput type="email" required formControlName="email" placeholder="Account Name">
+                                </mat-form-field>
+                            </div>
+
+                        </div>
+                        <div class="form-group" style="margin-bottom: 48px; margin-top:32px;">
+
+                            <div class="flex-spacer"></div>
+                            <button type="submit" mat-raised-button color="primary" class="btn btn-lg btn-round" [disabled]="loading2">SAVE CHANGES <i class="fa fa-spin fa-spinner"
+                                                                    *ngIf="loading2"></i></button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="row" *ngIf="loader">
+        <div class="col-12">
+            <app-loading></app-loading>
+        </div>
+    </div>
+</div>

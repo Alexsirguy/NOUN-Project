@@ -1,0 +1,48 @@
+<app-navbar></app-navbar>
+<section class="gray-bg" style="padding-top: 150px; padding-bottom: 32px; min-height: 90vh;">
+    <div class="container">
+        <div class="row" *ngIf="success">
+            <div class="row" *ngIf="data.length == 0">
+                <div class="col-md-12">
+                    <app2-empty-data (retry)="ngOnInit()" actionTitle="RETRY" message="We currently do not have any tutor or expert that matches your search criteria" title="No available tutors"></app2-empty-data>
+                </div>
+            </div>
+            <div class="col-md-6" style="margin-bottom: 16px;" *ngFor="let d of data">
+                <div class="row panel">
+                    <div class="col-sm-12 col-md-3 text-center">
+                        <img defaultImage="/assets/images/default.png" [lazyLoad]="FILEURL + d.avatar" style="width: 80px; height: 80px; border-radius: 50%;">
+                    </div>
+                    <div class="col-sm-12 col-md-9 aligncontent">
+                        <h1>{{d.fullname |titlecase}}</h1>
+
+                        <p class="specialty"> {{d.expert.specialty | titlecase}}</p>
+                        <p class="" style="margin-top: -16px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">{{d.expert.qualification | titlecase}}</p>
+                        <p class="bio">{{d.expert.bio}}</p>
+                        <div class="row">
+                            <div class="col-6">
+                                <button mat-raised-button routerLink="/catalogs/expert/{{d.userid}}" color="accent" style="min-width: 120px;">BOOK</button>
+                            </div>
+                            <div class="col-6 text-right">
+                                <p><span *ngIf="d.expert.currency=='NGN'">&#8358;</span><span *ngIf="d.expert.currency=='USD'">$</span>{{d.expert.rate | number:'1.2-2'}}/hr</p>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row" *ngIf="loader">
+            <div class="col-12">
+                <app2-loading></app2-loading>
+            </div>
+        </div>
+
+        <div class="row" *ngIf="failure">
+            <div class="col-12">
+                <app2-nework-failure (retry)="ngOnInit()"></app2-nework-failure>
+            </div>
+        </div>
+    </div>
+</section>
+<app-footer></app-footer>

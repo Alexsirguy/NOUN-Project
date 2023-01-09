@@ -1,0 +1,79 @@
+<div class="container-fluid">
+
+    <div *ngIf="success" class="row" style="margin:0px;">
+
+        <div class="col-md-12 col-lg-12 col-sm-12" style="margin:0px; margin-top: 16px;">
+            <div class="panel-shadow-header card-white" style="width:100%;">
+                <div style="width:100%;">
+
+                    <table mat-table matSort [dataSource]="dataSource">
+
+                        <!--- Note that these columns can be defined in any order.
+                                The actual rendered columns are set as a property on the row definition" -->
+
+
+                        <!-- Name Column -->
+                        <ng-container matColumnDef="id">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header> S/N </th>
+                            <td mat-cell *matCellDef="let element; let i = index">
+                                <div>
+                                    {{i + 1}}
+                                </div>
+                            </td>
+                        </ng-container>
+
+                        <!-- Name Column -->
+                        <ng-container matColumnDef="date">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header> Date</th>
+                            <td mat-cell *matCellDef="let element">
+                                {{element.date_}}
+                            </td>
+                        </ng-container>
+                        <!-- Name Column -->
+                        <ng-container matColumnDef="time">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Time</th>
+                            <td mat-cell *matCellDef="let element">{{element.time_}}</td>
+                        </ng-container>
+                        <!-- Name Column -->
+                        <ng-container matColumnDef="where">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Where</th>
+                            <td mat-cell *matCellDef="let element"> <a href="">{{element.meetinglink}}</a> </td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="datebooked">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Booking Date</th>
+                            <td mat-cell *matCellDef="let element"> {{element.created_at}} </td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="view">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header></th>
+                            <td mat-cell *matCellDef="let element">
+                                <button *ngIf="element.status=='pending'" mat-raised-button color="primary" class="btn-round" (click)="appointment(element.id)">VIEW / START</button>
+                                <button *ngIf="element.status=='complete'" mat-raised-button color="primary" class="btn-round" (click)="appointment(element.id)">VIEW </button>
+                            </td>
+                        </ng-container>
+
+
+                        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                    </table>
+
+                </div>
+
+                <mat-paginator style="width:100%; " [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+            </div>
+        </div>
+
+    </div>
+    <div class="row" *ngIf="failure">
+        <div class="col-12">
+            <app-nework-failure (retry)="ngOnInit()"></app-nework-failure>
+        </div>
+    </div>
+
+    <div class="row" *ngIf="loader">
+        <div class="col-12">
+            <app-loading></app-loading>
+        </div>
+    </div>
+</div>

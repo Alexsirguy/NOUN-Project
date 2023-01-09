@@ -1,0 +1,183 @@
+<div class="app-container" [class.example-is-mobile]="mobileQuery.matches">
+    <mat-sidenav-container class="app-sidenav-container" [style.marginTop.px]="mobileQuery.matches ? 0 : 0" autosize>
+        <mat-sidenav #snav [mode]="mobileQuery.matches ? 'over' : 'side'" [fixedInViewport]="mobileQuery.matches" fixedTopGap="0" class="sidebar">
+            <mat-nav-list style="" *ngIf="success">
+
+                <a *ngIf="data?.role==adminRole || data?.role == tutorRole" mat-list-item routerLink='/dashboard/account/profile'>
+
+                    <p mat-line style="font-size: 14px;">
+                        <img defaultImage="/assets/images/default.png" lazyLoad="{{EXTERNALAPI}}files/{{data?.user.avatar}}" class="img-circle" style="border:#efefee 1px  solid; width:60px;" />
+                        <span style="margin-left:16px;" class="mat-body-2"> {{data?.user.fullname}}
+                </span></p>
+                </a>
+
+                <a *ngIf="data?.role==studentRole" mat-list-item routerLink='/dashboard/account/details'>
+
+                    <p mat-line style="font-size: 14px;">
+                        <img defaultImage="/assets/images/default.png" lazyLoad="{{EXTERNALAPI}}files/{{data?.user.avatar}}" class="img-circle" style="border:#efefee 1px  solid; width:60px;" />
+                        <span style="margin-left:16px;" class="mat-body-2"> {{data?.user.fullname}}
+                </span></p>
+                </a>
+
+                <mat-divider style="margin-bottom:8px; margin-right: 0px; padding-right: 0px;"></mat-divider>
+
+
+                <a (click)="closeSideNav()" mat-list-item routerLink="/dashboard/home" routerLinkActive="active">
+                    <mat-icon mat-list-icon class="material-icons-outlined">home</mat-icon>
+                    <p mat-line>Home</p>
+                </a>
+
+
+                <a *ngIf="data?.role == studentRole" (click)="closeSideNav()" mat-list-item routerLink="/dashboard/account/details" routerLinkActive="active">
+                    <mat-icon mat-list-icon class="material-icons-outlined">person</mat-icon>
+                    <p mat-line>Profile</p>
+                </a>
+
+                <a *ngIf="data?.role == adminRole || data?.role == tutorRole" (click)="closeSideNav()" mat-list-item routerLink="/dashboard/appointments" routerLinkActive="active">
+                    <mat-icon mat-list-icon class="material-icons-outlined">perm_contact_calendar</mat-icon>
+                    <p mat-line>Appointments</p>
+                </a>
+
+                <a (click)="closeSideNav()" mat-list-item routerLink="/dashboard/bookings" routerLinkActive="active">
+                    <mat-icon mat-list-icon class="material-icons-outlined">view_agenda</mat-icon>
+                    <p mat-line>My Bookings</p>
+                </a>
+                <a *ngIf="data?.role == studentRole" (click)="closeSideNav()" mat-list-item routerLink="/catalogs" routerLinkActive="active">
+                    <mat-icon mat-list-icon class="material-icons-outlined">live_tv</mat-icon>
+                    <p mat-line>Book Experts</p>
+                </a>
+
+
+                <a dropdown-target=".wallets-menu" onclick="toggleSubMenu(event)" class="submenu-toggle" *ngIf="data?.role == adminRole || data?.role == tutorRole" mat-list-item routerLinkActive="active">
+                    <mat-icon mat-list-icon class="material-outline">credit_card
+                    </mat-icon>
+                    <p style="width:100%" matLin class="dropdown-text">Wallets
+
+                        <span style="float:right">
+                            <mat-icon mat-list-icon class="material-outline">arrow_drop_down
+                            </mat-icon>
+                        </span>
+
+                    </p>
+
+
+                </a>
+
+                <a routerLink="/dashboard/wallets/transactions" (click)="closeSideNav()" mat-list-item style="width:100%" class="wallets-menu dropdown-submenu dropdown-hide" routerLinkActive="active">
+
+                    <mat-icon mat-list-icon class="material-outline">
+                    </mat-icon>
+
+                    <p style="width:100%" mat-line class="dropdown-text">Transactions</p>
+
+                </a>
+
+                <a *ngIf="data?.role == adminRole || data?.role == tutorRole" routerLink="/dashboard/wallets/payouts" (click)="closeSideNav()" mat-list-item style="width:100%" class="wallets-menu dropdown-submenu dropdown-hide" routerLinkActive="active">
+
+                    <mat-icon mat-list-icon class="material-outline">
+                    </mat-icon>
+
+                    <p style="width:100%" mat-line class="dropdown-text">Payouts</p>
+
+                </a>
+
+                <a *ngIf="data?.role == adminRole || data?.role == tutorRole" routerLink="/dashboard/wallets/details" (click)="closeSideNav()" mat-list-item style="width:100%" class="wallets-menu dropdown-submenu dropdown-hide" routerLinkActive="active">
+
+                    <mat-icon mat-list-icon class="material-outline">
+                    </mat-icon>
+
+                    <p style="width:100%" mat-line class="dropdown-text">Account Details</p>
+
+                </a>
+
+                <a dropdown-target=".settings-menu" onclick="toggleSubMenu(event)" class="submenu-toggle" *ngIf="data?.role == adminRole || data?.role == tutorRole" mat-list-item routerLinkActive="active">
+                    <mat-icon mat-list-icon class="material-outline">settings
+                    </mat-icon>
+                    <p style="width:100%" matLin class="dropdown-text">Settings
+
+                        <span style="float:right">
+                            <mat-icon mat-list-icon class="material-outline">arrow_drop_down
+                            </mat-icon>
+                        </span>
+
+                    </p>
+
+
+                </a>
+
+                <a [routerLink]="['/dashboard/account/profile']" [queryParams]="{activeTab:0}" (click)="closeSideNav()" mat-list-item style="width:100%" class="settings-menu dropdown-submenu dropdown-hide" routerLinkActive="active">
+
+                    <mat-icon mat-list-icon class="material-outline">
+                    </mat-icon>
+
+                    <p style="width:100%" mat-line class="dropdown-text">Profile</p>
+
+                </a>
+
+                <a *ngIf="data?.role == adminRole || data?.role == tutorRole" [routerLink]="['/dashboard/account/profile']" [queryParams]="{activeTab:1}" (click)="closeSideNav()" mat-list-item style="width:100%" class="settings-menu dropdown-submenu dropdown-hide" routerLinkActive="active">
+
+                    <mat-icon mat-list-icon class="material-outline">
+                    </mat-icon>
+
+                    <p style="width:100%" mat-line class="dropdown-text">Calendar</p>
+
+                </a>
+
+                <a *ngIf="data?.role == adminRole || data?.role == tutorRole" [routerLink]="['/dashboard/account/profile']" [queryParams]="{activeTab:2}" (click)="closeSideNav()" mat-list-item style="width:100%" class="settings-menu dropdown-submenu dropdown-hide" routerLinkActive="active">
+
+                    <mat-icon mat-list-icon class="material-outline">
+                    </mat-icon>
+
+                    <p style="width:100%" mat-line class="dropdown-text">Subscriptions</p>
+
+                </a>
+
+                <a *ngIf="data?.role == adminRole || data?.role == tutorRole" [routerLink]="['/dashboard/account/profile']" [queryParams]="{activeTab:3}" (click)="closeSideNav()" mat-list-item style="width:100%" class="settings-menu dropdown-submenu dropdown-hide" routerLinkActive="active">
+
+                    <mat-icon mat-list-icon class="material-outline">
+                    </mat-icon>
+
+                    <p style="width:100%" mat-line class="dropdown-text">Verification</p>
+
+                </a>
+
+
+                <a *ngIf="data?.selling" (click)="closeSideNav()" mat-list-item target="__blank" href="{{data?.url}}" routerLinkActive="active">
+                    <mat-icon mat-list-icon class="material-icons-outlined">school</mat-icon>
+                    <p mat-line>My School</p>
+                </a>
+
+                <a (click)="closeSideNav()" mat-list-item routerLink="/account/logout" routerLinkActive="active">
+                    <mat-icon mat-list-icon class="material-icons-outlined">power_settings_new</mat-icon>
+                    <p mat-line>Logout</p>
+                </a>
+
+            </mat-nav-list>
+        </mat-sidenav>
+
+        <mat-sidenav-content style="background-color: #f9f9f9 !important;">
+            <div class="">
+                <mat-toolbar fxLayoutGap="8px" class="sidepadding app-toolbar navbar-shadow">
+                    <button mat-icon-button (click)="snav.toggle()">
+                <mat-icon>menu</mat-icon>
+              </button>
+                    <h1 class="app-name">{{title}}</h1>
+                    <span class="nav-spacer"></span>
+                    <mat-menu #proMenu="matMenu">
+                        <button routerLink="/dashboard/account/profile" mat-menu-item>Profile</button>
+                        <mat-divider></mat-divider>
+                        <button routerLink="/account/logout" mat-menu-item>Logout</button>
+                    </mat-menu>
+                    <button [matMenuTriggerFor]="proMenu" mat-icon-button mat-icon-button matTooltip="Profile" aria-label="Logout">
+                <!-- <mat-icon style="font-size:32px;" mat-list-icon class="material-icons-outlined">account_circle</mat-icon> -->
+    
+                <img defaultImage="/assets/images/default.png" lazyLoad="{{EXTERNALAPI}}files/{{data?.user.avatar}}" class="img-circle" *ngIf="success" />
+              </button>
+                </mat-toolbar>
+                <div class="page-container">
+                    <router-outlet></router-outlet>
+                </div>
+            </div>
+        </mat-sidenav-content>
+    </mat-sidenav-container>
+</div>

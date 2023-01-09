@@ -1,0 +1,53 @@
+.gray-bg {
+    background-color: #efefee;
+}
+
+.title {
+    font-size: 28px;
+    font-weight: 700;
+}
+
+.panel {
+    background-color: white !important;
+    padding-top: 16px;
+    padding-bottom: 16px;
+    border-radius: 8px;
+}
+
+.specialty {
+    margin-top: -16px;
+    color: #0aa89e;
+    font-weight: 700;
+}
+
+.bio {}
+
+.color-red {
+    color: #ff4f1e;
+}
+
+.timeslot {
+    background-color: #ffffff !important;
+    border: solid 1px#000;
+    color: #000;
+    min-width: 90px;
+}
+
+.active {
+    background-color: #ff4f1e !important;
+    border: solid 1px#ff4f1e;
+    color: #ffffff;
+    min-width: 90px;
+}
+
+@media (max-width:500px) {
+    .aligncontent {
+        text-align: center;
+    }
+}
+
+@media (min-width:768px) {
+    .aligncontent {
+        text-align: left;
+    }
+}
