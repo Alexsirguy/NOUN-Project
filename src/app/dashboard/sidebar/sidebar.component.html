@@ -141,12 +141,6 @@
 
                 </a>
 
-
-                <a *ngIf="data?.selling" (click)="closeSideNav()" mat-list-item target="__blank" href="{{data?.url}}" routerLinkActive="active">
-                    <mat-icon mat-list-icon class="material-icons-outlined">school</mat-icon>
-                    <p mat-line>My School</p>
-                </a>
-
                 <a (click)="closeSideNav()" mat-list-item routerLink="/account/logout" routerLinkActive="active">
                     <mat-icon mat-list-icon class="material-icons-outlined">power_settings_new</mat-icon>
                     <p mat-line>Logout</p>

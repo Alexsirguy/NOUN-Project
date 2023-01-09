@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "clique-market": {
+    "noun-project": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/clique-market",
+            "outputPath": "dist/noun-project",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -71,18 +71,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "clique-market:build"
+            "browserTarget": "noun-project:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "clique-market:build:production"
+              "browserTarget": "noun-project:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "clique-market:build"
+            "browserTarget": "noun-project:build"
           }
         },
         "test": {
@@ -113,25 +113,23 @@
               "tsconfig.spec.json",
               "e2e/tsconfig.json"
             ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
+            "exclude": ["**/node_modules/**"]
           }
         },
         "e2e": {
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "clique-market:serve"
+            "devServerTarget": "noun-project:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "clique-market:serve:production"
+              "devServerTarget": "noun-project:serve:production"
             }
           }
         }
       }
     }
   },
-  "defaultProject": "clique-market"
+  "defaultProject": "noun-project"
 }
